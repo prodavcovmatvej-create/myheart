@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Для тебя ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card {
+        background: rgba(0, 0, 0, 0.35);
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+        font-size: 2.3em;
+    }
+
+    p {
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+
+    input {
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        font-size: 1em;
+        width: 80%;
+        max-width: 250px;
+        margin-top: 10px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        background: #ff6f91;
+        color: #fff;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #ff4f78;
+    }
+
+    .hint {
+        margin-top: 15px;
+        font-size: 1em;
+        color: #ffe3e3;
+        opacity: 0.9;
+    }
+
+    .error {
+        margin-top: 10px;
+        color: #ffd1d1;
+    }
+
+    .lock {
+        font-size: 4em;
+        margin: 20px 0;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .unlock {
+        transform: rotate(-20deg) scale(1.2);
+        opacity: 0;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 15px;
+        margin: 20px 0;
+    }
+
+    #content {
+        display: none;
+    }
+
+    .heart {
+        font-size: 2em;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="login">
+    <h1>💌 Секретное послание</h1>
+
+    <div class="lock" id="lock">🔒</div>
+
+    <p>Введи пароль, чтобы открыть моё сердце</p>
+
+    <input type="password" id="password" placeholder="Пароль">
+    <br>
+    <button onclick="checkPassword()">Открыть ❤️</button>
+
+    <div class="hint">
+        🔑 Подсказка: дата наших отношений 💕
+    </div>
+
+    <div class="error" id="error"></div>
+</div>
+
+<div class="card" id="content">
+    <h1>Для моей любимой ❤️</h1>
+
+    <p>
+        Этот маленький сайт — только для тебя.  
+        Я хотел сказать это особенным способом…
+    </p>
+
+    <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Твой браузер не поддерживает видео.
+    </video>
+
+    <p>
+        Спасибо тебе за всё,  
+        за тепло, поддержку и любовь 💕
+    </p>
+
+    <div class="heart">💖💖💖</div>
+</div>
+
+<script>
+    const correctPassword = "06.09.2024"; // ← поменяй пароль здесь
+
+    function checkPassword() {
+        const input = document.getElementById("password").value;
+        const error = document.getElementById("error");
+        const lock = document.getElementById("lock");
+
+        if (input === correctPassword) {
+            lock.textContent = "🔓";
+            lock.classList.add("unlock");
+
+            setTimeout(() => {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            }, 700);
+        } else {
+            error.textContent = "Пароль неверный… попробуй ещё 💔";
+        }
+    }
+</script>
+
+</body>
+</html>
